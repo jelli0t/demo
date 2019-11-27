@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+
+	<th:block th:fragment="username" th:unless="${player == null}">
+		<p>Čitko upiši ime kojim ćemo ti se obraćati u Dogvilu:</p>
+		<form name="usernameForm" method="post" th:action="@{/signup/next/gender}" th:object="${player}"
+			th:attr="data-valid-action=@{/signup/validate/username}"
+			onsubmit="event.preventDefault(); validateAndSubmit(this.name);">
+			<div class="fx-box fx-dir-row fx-valign-cnt input-wrepper">
+				<input type="text" th:field="*{username}" class="trnsp-input"
+					placeholder="Korisničko ime..." size="18">
+				<a href="javascript:;" class="help-bttn x-1em-margin">?</a>
+				<button type="submit" class="bttn-3d-def bttn-3d-green">Dalje</button>
+			</div>
+		</form>
+	</th:block>
+
+	<th:block th:fragment="gender" th:unless="${player == null}">
+		<p>
+			<b>Zdravo <span th:text="${player.username}">player1</span></b><br>
+			<span>Izaberi pol za svoju konzolu</span>
+		</p>
+		<form name="playerGenderForm" method="post" th:action="@{/signup/next/avatar}" th:object="${player}"
+			th:attr="data-valid-action=@{/signup/validate/gender}"
+			onsubmit="event.preventDefault(); validateAndSubmit(this.name);"
+			class="fx-box fx-dir-col fx-valign-cnt">
+			<div class="fx-box fx-dir-row y-1em-margin">
+				<div th:each="gen : ${T(org.sobakaisti.literogame.util.Gender).values()}" 
+					class="input-wrepper x-1em-margin">
+				    <input type="radio" th:field="*{gender}" th:value="${gen}" th:id="${gen.name() + '_gender'}" />
+				    <label th:for="${gen.name() + '_gender'}" th:text="${gen.rsInitial}"></label>
+			  	</div>			
+<!-- 				<a href="javascript:;" class="help-bttn x-1em-margin" data-help-txt="">?</a> -->
+			</div>
+			<button type="submit" class="bttn-3d-def bttn-3d-green">Dalje</button>
+		</form>	
+	</th:block>
+	
+	<th:block th:fragment="avatar" th:unless="${player == null}">
+		<p>
+			<span><span th:text="${player.username}">player1</span>,<br>
+			 Izaberi izgled konzole po kojoj će te prepoznavati u Dogvilu</span>
+		</p>
+		<form name="playerAvatarForm" method="post" th:action="@{/signup/next/terms}" th:object="${player}"
+			th:attr="data-valid-action=@{/signup/validate/avatar}"
+			onsubmit="event.preventDefault(); validateAndSubmit(this.name);"
+			class="fx-box fx-dir-col fx-valign-cnt">
+			<div class="fx-box fx-wrap y-1em-margin">
+				<div th:each="av : ${T(org.sobakaisti.literogame.util.Avatar).values()}" 
+					class="input-wrepper x-1em-margin y-05em-margin">
+				    <input type="radio" th:field="*{avatar}" th:value="${av}" th:id="${av.toLower() + '_avatar'}" 
+				    	style="display: none;" class="avatar-item" />
+				    <label th:for="${av.toLower() + '_avatar'}">
+				    	<img th:alt="${av.name}" src="">
+				    </label>
+			  	</div>			
+<!-- 				<a href="javascript:;" class="help-bttn x-1em-margin" data-help-txt="">?</a> -->
+			</div>
+			<button type="submit" class="bttn-3d-def bttn-3d-green">Dalje</button>
+		</form>	
+	</th:block>
+	
+	<th:block th:fragment="terms" th:unless="${player == null}">
+		<p>
+			<span>Nakon čipovanja bićete registrovani u bazu „Simulacrum Co“. 
+			<br>Molimo vas da potvrdite da ste pročitali uslove za pristup Dogvilu.</span>
+		</p>
+		<form name="playerAvatarForm" method="post" th:action="@{/signup/next/soby}" th:object="${player}"
+			th:attr="data-valid-action=@{/signup/validate/signed}"
+			onsubmit="event.preventDefault(); validateAndSubmit(this.name);"
+			class="fx-box fx-dir-col fx-valign-cnt">
+			
+			<div class="fx-box fx-dir-row fx-valign-cnt input-wrepper">
+				<input type="checkbox" id="terms_check" name="signed" style="margin-right: 1em;" value="1">
+				<label for="terms_check" style="font-size: 0.8em;">
+					Saglasan sam sa <a href="javascript:;" id="terms_bttn">Uslovima pristupanja Simulacrum Inc.</a>
+				</label>
+			</div>
+			<article id="terms_and_conditions" class="y-1em-margin" style="display: none;">
+				<h1>Uslovi pristupanja Simulacrum Inc.</h1>
+				<hr>
+				<p>Poslednja verzija dokumenta: 24. VI 2027</p>
+				<p>Pažljivo pročitaj ovaj dokument pre pristupanja Simulacum Inc. 
+					programu (u daljem tekstu Korporaciji) i potpisivanja formulara.
+				</p>
+				<ol>
+					<li>					
+						Svojevoljnim izborom pristupaš programu Korporacije i 
+						odričeš se svog pređašnjeg identiteta nasleđenog iz vremena pre Katastrofe ili 
+						rođenjem u vremenu nakon Katastorfe.
+					</li>
+					<li>
+						Svojevoljno pružaš Korporaciji na uvid i raspolaganje sve podatke sadržane 
+						u tvojim identifikacionim dokumentima nastalim pre pristupanja programu Korporacije. 
+					</li>
+					<li>
+						Svojevoljno pristupaš Korporaciji sa namerom da učestvuješ 
+						u Simulaciji ili u nekom od programa Korporacije koji se odvijaju 
+						u Dogvilu ili na bilo kojoj teritoriji pod upravom ili nadležnošću Korporacije. 
+					</li>
+					<li>
+						Svojevoljno prihvataš povezivanje na glavni server Korporacije putem integrisanog 
+						čipa (u daljem tekstu čipovanje). Svojevoljno prihvataš čipovanje kojim 
+						će Korporativni program „Soby 3.2“ postati deo tvog organizma. 
+					</li>
+					<li>					
+						Svojevoljno se odričeš svih podataka koje Korporativni program „Soby 3.2“ 
+						može da prikupi u toku tvog delovanja u Simulaciji ili na teritoriji Dogvila, 
+						kao i na svim drugim lokacijama gde Korporativni program „Soby 3.2“ može neometano da radi.
+					</li>
+					<li>
+						Potvrđuješ da snosiš odgovornost za neometan rad Korporativnog programa „Soby 3.2“, 
+						kao i odgovornost za pravilno funkcionisanje čipa i svih drugih tehničkih elemenata uzetih od Korporacije na korišćenje. 
+					</li>
+					<li>
+						Potvrđuješ da tehničke elemente uzete od Korporacije nećeš ni na koji način otuđiti, 
+						oštetiti ili ponuditi drugom licu, bilo da je ono korisnik Korporativnog programa ili ne. 
+					</li>
+					<li>
+						Svojevoljno prihvataš snošenje izrečenih kazni u slučaju aktivnosti koje krše naredbe 
+						izrečene u prethodnim tačkama. 
+					</li>
+					<li>
+						Izrečene kazne se izvršavaju u skladu sa propisima izrečenim u ovom dokumentu. 
+						Kaznene mere mogu biti izvršene od strane bilo kog lica zaduženog za bezbednost i očuvanje 
+						funkcionalnosti Korporativnog programa (u daljem tekstu „Šintera“) na licu mesta u trenutku 
+						izvršenja prekršaja ili u trenutku utvrđivanja prethodno počinjenog prekršaja.
+					</li>
+					<li>
+						Šinter ima pravo da u svakom trenutku zatraži čip na skeniranje. U slučaju odbijanja poslušnosti, 
+						otežavanja i/ili onemogućavanja Šintera 
+						u izvršenju svojih dužnosti, Šinter ima pravo da primeni kaznene mere propisane od strane Korporacije.
+					</li>
+				</ol>
+				<p>
+					<b>Prihvatanjem odrednica Uslova pristupanja Korporaciji obavezuješ se da deluješ u 
+					skladu sa njegovim propisima.</b> 
+				</p>
+				<p>
+					<b>U slučaju da se ne slažeš sa bilo kojom tačkom dokumenta, ne možeš 
+					pristupiti programu Simulacrum Inc. korporacije.</b> 
+				</p>
+				<hr id="end_of_terms">
+				<p>
+					Simulacrum Inc. zadržava sva prava nad izmenom dokumenta u skladu sa svojim ciljevima i odlukama.
+				</p>
+			</article>
+			<button type="submit" class="bttn-3d-def bttn-3d-green y-1em-margin">Dalje</button>
+		</form>	
+	</th:block>
+	
+	<th:block th:fragment="soby" th:unless="${player == null}">
+		<form name="sobySaisForm" method="post" th:action="@{/signup/next/id_card}" th:object="${player}"
+			th:attr="data-valid-action=@{/signup/validate/signed}"
+			onsubmit="event.preventDefault(); validateAndSubmit(this.name);"
+			class="fx-box fx-dir-col fx-valign-cnt">
+			<div class="y-1em-margin" id="soby_dialog">
+				<ul th:if="${soby_response != null}" class="soby_responses">
+					<li th:each="msg : ${soby_response}" th:text="${msg}"></li>
+				</ul>
+				<img th:src="@{/resources/img/soby_2.0.svg}" height="180">
+			</div>
+			<button type="submit" class="bttn-3d-def bttn-3d-green">Finish</button>
+		</form>	
+		<script type="text/javascript">
+			$("#soby_dialog").ready(function(){
+				var lis = document.querySelectorAll(".soby_responses > li");
+				lis.forEach(function (li, step) {
+					var size = li.innerHTML.length;
+				 	setTimeout(function () {
+				 		li.style.display = "block";
+					    if(step+1 < lis.length)
+					    	$(li).delay(3200).fadeOut();
+				   }, step * 3600);
+				});  
+			});
+		</script>
+	</th:block>
+	
+	
+	<th:block th:fragment="id_card" th:unless="${player == null}">
+		<div class="fx-box fx-wrap y-1em-margin">
+			
+		</div>
+	</th:block>
+
+</body>
+</html>

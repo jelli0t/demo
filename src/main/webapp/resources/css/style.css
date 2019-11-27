@@ -1,0 +1,342 @@
+@charset "UTF-8";
+
+@import
+	url(https://fonts.googleapis.com/css?family=Noto+Sans:300,400,700&subset=latin,cyrillic-ext,latin-ext,cyrillic)
+	;
+
+html, body, div, article, section, img, ul {
+	margin: 0;
+	padding: 0;	
+	box-sizing: border-box;
+}
+
+html, body {
+	font-family: 'Noto Sans', sans-serif;
+	height: 100%;
+}
+
+.fx-box {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+}
+
+.fx-dir-row {
+	-webkit-flex-direction: row;
+	flex-direction: row;
+}
+
+.fx-dir-col {
+	-webkit-flex-direction: column;
+	flex-direction: column;
+}
+
+.fx-justify-sbtw {
+	-webkit-justify-content: space-between; /* Safari 6.1+ */
+	justify-content: space-between;
+}
+
+.fx-valign-cnt {
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.fx-alignit-start {
+	-webkit-box-align: start;
+	-ms-flex-align: start;
+	align-items: flex-start;
+}
+
+.fx-wrap {
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+.fx-grow1 {
+	-webkit-flex-grow: 1;
+	flex-grow: 1;
+}
+
+.fx-grow2 {
+	-webkit-flex-grow: 2;
+	flex-grow: 2;
+}
+
+a:link, a:VISITED {
+	text-decoration: none;
+	outline: none;
+	background-color: transparent;
+}
+
+.x-1em-padding {
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+.x-1em-margin {
+	margin-left: 1em;
+	margin-right: 1em;
+}
+
+.x-05em-margin {
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+}
+
+.y-05em-margin {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.y-1em-margin {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.y-2em-margin {
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+.input-wrepper {
+	background-color: #f7f7f7;
+	border: 2px solid #e5e5e5;
+	border-radius: 16px;
+	padding: 10px 16px;
+}
+
+.trnsp-input {
+	background: none;
+	border: 0;
+	font-size: 1.2125em;
+	padding: 11px 0 6px;
+	user-select: auto;
+	line-height: 1.25;
+	margin: 0;
+}
+
+input:focus {
+	outline: none;
+}
+
+.input-wrepper:focus-within {
+	background-color: #fff;
+}
+
+.bttn-3d-def {
+	display: inline-block;
+	padding: 12px 16px 14px;
+	font-size: 1.25em;
+	line-height: 1.25em;
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+	border-style: solid;
+	border-radius: 16px;
+	font-weight: 700;
+	letter-spacing: 0.8px;
+	text-transform: uppercase;
+	transition: all 0.2s ease-out;
+	box-shadow: inset 0 -6px 0 0 rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+	user-select: none;
+	font-family: monospace;
+	outline: none;
+}
+
+.bttn-3d-def:active {
+	box-shadow: inset 0 -3px 0 0 rgba(0, 0, 0, 0.2);
+}
+
+.bttn-3d-green {
+	background-color: #58a700;
+	color: #fff;
+}
+
+.help-bttn {
+	border: 1px solid #333;
+	font-family: monospace;
+	font-weight: 700;
+	padding: 2px;
+	width: 1em;
+	height: 1em;
+	border-radius: 50%;
+	line-height: 1em;
+	color: #000;
+	background: #fff;
+	text-align: center;
+	opacity: 0.5;
+}
+
+.help-bttn:hover {
+	opacity: 1;
+}
+
+.help-bttn:hover::after {
+	position: absolute;
+	content: 'Unesite svoje korisničko ime od max 16 karaktera. Prihvatljivi svi alfanumerički karakteri i znakovi _ i -';
+	display: inline-block;
+	max-width: 210px;
+	margin: 1.5em 0 0 -1em;
+	padding: 8px 12px;
+	background-color: #ffffca;
+	z-index: 999;
+	font-size: .9em;
+	font-family: monospace;
+	font-weight: normal;
+	text-align: left;
+	color: rgba(0, 0, 0, 0.75);
+	border: 1px solid #D5D5D5;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	webkit-box-shadow: 0px 0px 9px 3px rgba(213, 213, 213, 0.6);
+	-moz-box-shadow: 0px 0px 9px 3px rgba(213, 213, 213, 0.6);
+	box-shadow: 0px 0px 9px 3px rgba(213, 213, 213, 0.6);
+	box-sizing: border-box;
+}
+
+.field-err {
+	position: relative;	
+	border-color: #DD381D !important;
+}
+.field-err:after {
+	position: absolute;
+	left: 0;
+	top: 103%;
+	display: inline-block;
+	width: 260px;
+	margin: 1px 0;	
+	padding: 0.3em 0.6em;
+	color: #fff;
+	background-color: #DD381D;
+	content: attr(data-error);
+	border-radius: 6px;
+	box-sizing: border-box;
+	z-index: 99;
+}
+.field-info { position: relative; }
+.field-info:after {
+	position: absolute;
+	right: 0;
+	top: 103%;
+	display: inline-block;
+	width: 260px;
+	margin: 3px 0;
+	font-size: 0.9em;
+	font-family: monospace;
+	padding: 0.5em 1em;
+	background-color: #ffffca;
+	color: rgba(0, 0, 0, 0.9);
+	content: attr(data-info);
+	border-radius: 6px;
+	border: 1px solid #D5D5D5;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
+    transform: scale(1.5);
+}
+
+.avatar-item + label {
+	cursor: pointer;
+	opacity: 0.8;
+}
+.avatar-item + label:hover { opacity: 1; }
+.avatar-item:checked + label {
+	border: 2px solid #58a700;
+	opacity: 1;
+	box-shadow: 0px 0px 9px 3px rgba(213, 213, 213, 0.6);
+}
+
+#main_container {
+/* 	border: 1px solid red; */
+	padding: 0.75em;
+	max-width: 640px;
+}
+
+.progress-bar {
+	border-radius: 30px;
+	overflow: hidden;
+	min-width: 320px;
+  	width: 100%;
+}
+.progress-bar > span { display: block; }
+.bar { 
+	background: rgba(0,0,0,0.075);  
+	padding: 6px;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.progress {
+  background: #58a700;
+  display: block;
+  color: #fff;
+  height: 16px;
+  width: 0;
+  border-radius: 30px; 
+   background-image: 
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  
+  transition: 0.4s linear;  
+  transition-property: width, background-color;
+}
+
+#terms_and_conditions {
+	display: none;
+	font-size: 0.825em;
+	font-family: monospace;
+	max-width: 640px;
+	padding: 1em;
+	background: rgba(255, 255, 202, 0.25);
+	max-height: 460px;
+	overflow: auto;
+}
+ol > li { margin-bottom: 0.75em;}
+
+
+.soby_responses {
+	position: relative;
+	font-family: monospace;
+	font-size: 1.125em;
+	list-style: none;
+	border: 2px solid #333;
+	max-width: 220px;
+	min-height: 2.5em;
+	border-radius: 49%;
+	padding:  2.2em 2em;
+	text-align: center;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.soby_responses > li {
+  	display: none; 
+}
+
+#soby_dialog {
+	position: relative; 
+	min-width: 320px; 
+	height: 320px;
+}
+
+#soby_dialog > img { 
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.logo {
+/* 	display: inline-block; */
+	background-color: #f7f7f7;
+	border: 2px solid #e5e5e5;
+	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+}

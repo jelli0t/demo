@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" media="all" th:href="@{/resources/css/style.css}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Demo - Litero-igra</title>
+</head>
+<body class="fx-box fx-dir-col fx-justify-sbtw fx-valign-cnt">
+	<section class="fx-box fx-dir-col fx-valign-cnt">
+		<div class="logo y-1em-margin">Logo</div>	
+		<div class="progress-bar y-1em-margin">
+		  <span class="bar">
+		    <span class="progress"></span>
+		  </span>
+		</div>	
+	</section>
+	<section class="fx-box fx-wrap fx-dir-col fx-grow2 fx-valign-cnt" id="main_container">		
+		<!-- Default insert username fragment -->
+		<th:block th:insert="~{fragments/signup_fragments :: username}"></th:block>
+	</section>
+	<section>
+		<audio controls autoplay loop>
+		  <source th:src="@{/resources/audio/cekaonica_tema.mp3}" type="audio/mp3">
+		</audio>
+	</section>
+</body>
+<!-- scripts -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript" charset="UTF-8"></script>
+<script type="text/javascript" th:src="@{/resources/js/signup.js}" charset="UTF-8"></script>
+</html>
