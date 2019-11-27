@@ -58,7 +58,6 @@ public class SignupController {
 	private void appendSobyResponse(Model model) {
 		if(model.containsAttribute(PLAYER_ATTR_NAME)) {
 			Player player = (Player) model.asMap().get(PLAYER_ATTR_NAME);
-			int signed = player.getSigned();
 			List<String> messages = new ArrayList<String>() {{
 				switch (player.getSigned()) {
 				case 1:
